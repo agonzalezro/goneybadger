@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strings"
 	"testing"
 
 	assert "github.com/pilu/miniassert"
@@ -51,6 +52,11 @@ func TestNotify201(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.Equal(t, receivedPayload.Error.Message, expectedMessage)
+
+	bt := receivedPayload.Error.Backtrace
+	assert.True(t, len(bt) > 0)
+	assert.True(t, strings.HasSuffix(bt[0].File, "goneybadger_test.go"))
+	assert.NotEqual(t, bt[0].Number, "0")
 }
 
 // TestNotify201 will asure that if the Honeybadger API returns us something

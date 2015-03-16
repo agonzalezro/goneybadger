@@ -22,8 +22,3 @@ How to use
 
 You can as well add a timeout for the http calls using the method
 `NewWithTimeout` which will receive an extra parameter of type `time.Duration`.
-
-TODO
-----
-
-- Honeybadger allows backtraces POSTing but it's not being used.
