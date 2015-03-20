@@ -54,7 +54,7 @@ func NewPayload(hostname, env, message string) *Payload {
 
 	// 3 is the needed offset to get the caller as first position.
 	runtime.Callers(3, pcs)
-	for i := 0; i <= MAX_PCS && pcs[i] != 0; i++ {
+	for i := 0; i < MAX_PCS && pcs[i] != 0; i++ {
 		pc := pcs[i]
 		file, line := runtime.FuncForPC(pc).FileLine(pc)
 		bt := Backtrace{
